@@ -1,0 +1,25 @@
+{
+	"name": "base1",
+	"properties": {
+		"Name": "base1",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://fswneobankpoc@saneobankpocunit.dfs.core.windows.net/diretorioWS",
+			"Properties": {
+				"FormatType": "csv",
+				"LinkedServiceName": "wsneobank-unit-WorkspaceDefaultStorage"
+			}
+		},
+		"PublishStatus": "PUBLISHED",
+		"ObjectVersion": 2,
+		"ObjectId": "edfc3875-f65a-4c34-878d-19f9487aafc1"
+	},
+	"type": "DATABASE"
+}
