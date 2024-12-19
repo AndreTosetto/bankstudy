@@ -1,6 +1,9 @@
 {
 	"name": "selectSrvssNeoBank",
 	"properties": {
+		"folder": {
+			"name": "Select"
+		},
 		"content": {
 			"query": "SELECT\n*\nFROM OPENROWSET(\nBULK 'https://pandemicdatalake.blob.core.windows.net/public/curated/covid-19/ecdc_cases/latest/ecdc_cases.csv',\nFORMAT = 'CSV',\nPARSER_VERSION = '2.0',\nHEADER_ROW = TRUE) as [r]\nWhere geo_id = 'BR'",
 			"metadata": {
