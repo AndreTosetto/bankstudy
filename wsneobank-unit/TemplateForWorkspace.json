@@ -172,7 +172,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "48e08521-0af1-44f2-8135-5edccbe4a5e2"
+						"spark.autotune.trackingId": "7433ca28-27b0-47ad-b9a5-c5ff3228d9eb"
 					}
 				},
 				"metadata": {
@@ -197,15 +197,13 @@
 						"sparkVersion": "3.4",
 						"nodeCount": 3,
 						"cores": 4,
-						"memory": 28,
-						"automaticScaleJobs": false
+						"memory": 28
 					},
 					"sessionKeepAliveTimeout": 30
 				},
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"df = spark.read.csv(\"abfss://containerpublic@saneobankpocunit.dfs.core.windows.net/NeoBank_Modelling.csv\",\r\n",
 							"                     sep=',',\r\n",
