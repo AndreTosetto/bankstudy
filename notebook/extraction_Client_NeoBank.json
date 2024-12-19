@@ -6,6 +6,10 @@
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "synspneobankest",
+			"type": "BigDataPoolReference"
+		},
 		"sessionProperties": {
 			"driverMemory": "28g",
 			"driverCores": 4,
@@ -16,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "8495373a-1403-4a06-9384-abeec72e6f68"
+				"spark.autotune.trackingId": "bc07ed68-c01e-435c-867d-40faf9baa505"
 			}
 		},
 		"metadata": {
@@ -24,10 +28,25 @@
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
-				"display_name": "python"
+				"display_name": "Synapse PySpark"
 			},
 			"language_info": {
 				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/7ee88019-d2b7-4650-b332-cb7e876b1b95/resourceGroups/rg-pocneobankunit/providers/Microsoft.Synapse/workspaces/wsneobank-unit/bigDataPools/synspneobankest",
+				"name": "synspneobankest",
+				"type": "Spark",
+				"endpoint": "https://wsneobank-unit.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synspneobankest",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
 		},
@@ -35,9 +54,31 @@
 			{
 				"cell_type": "code",
 				"source": [
-					""
+					"df = spark.read.csv(\"abfss://containerpublic@saneobankpocunit.dfs.core.windows.net/NeoBank_Modelling.csv\",\r\n",
+					"                     sep=',',\r\n",
+					"                     header='True',\r\n",
+					"                     inferSchema='True')"
 				],
-				"execution_count": null
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"display(df.limit(20))"
+				],
+				"execution_count": 4
 			}
 		]
 	}
