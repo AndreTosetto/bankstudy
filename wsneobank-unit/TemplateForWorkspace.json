@@ -140,7 +140,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/SQL - FormaFile_NeoBank')]",
+			"name": "[concat(parameters('workspaceName'), '/SQL - FileFormat_NeoBank')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
