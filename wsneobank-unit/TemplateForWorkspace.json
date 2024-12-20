@@ -117,6 +117,29 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL - DS_NeoBank')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "External Table - Neobank"
+				},
+				"content": {
+					"query": "CREATE EXTERNAL DATA SOURCE DS_NEOBANK_bronze\nWITH (\n    LOCATION = 'https://saneobankpocunit.blob.core.windows.net/bronze',\n    CREDENTIAL = CredentialsNeoBank\n);",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "db_pssv_NeoBank",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SQL - Master Key')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
