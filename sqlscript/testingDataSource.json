@@ -1,0 +1,20 @@
+{
+	"name": "testingDataSource",
+	"properties": {
+		"folder": {
+			"name": "External Table - Neobank"
+		},
+		"content": {
+			"query": "CREATE EXTERNAL DATA SOURCE DS_NEOBANK_b WITH\n(\n\tLOCATION = 'https://saneobankpocunit.blob.core.windows.net/bronze',\n\tCREDENTIAL = CredentialsNeoBank\n)\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "db_pssv_NeoBank",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
