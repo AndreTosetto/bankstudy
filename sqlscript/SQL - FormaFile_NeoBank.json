@@ -1,0 +1,20 @@
+{
+	"name": "SQL - FormaFile_NeoBank",
+	"properties": {
+		"folder": {
+			"name": "External Table - Neobank"
+		},
+		"content": {
+			"query": "CREATE EXTERNAL FILE FORMAT csv_format\nWITH(\n    FORMAT_TYPE = DELIMITEDTEXT,\n    FORMAT_OPTIONS(\n        FIELD_TERMINATOR = ',',\n        STRING_DELIMITER = '\"',\n        FIRST_ROW = 2,\n        USE_TYPE_DEFAULT = TRUE\n    )\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "db_pssv_NeoBank",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
