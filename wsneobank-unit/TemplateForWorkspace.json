@@ -102,7 +102,7 @@
 					"name": "External Table - Neobank"
 				},
 				"content": {
-					"query": "CREATE DATABASE SCOPED CREDENTIAL CredentialsNeoBank\nWITH IDENTITY = 'SHARED ACCESS SIGNATURE',\nSECRET = 'sv=2022-11-02&ss=bfqt&srt=c&sp=rwdlacupyx&se=2024-12-31T02:22:50Z&st=2024-12-20T18:22:50Z&spr=https,http&sig=DD8nTeVvJzBXNSQMCe0Ksl3JmU5H%2BQemJQzh4ZoPgcE%3D';\nGO",
+					"query": "ALTER DATABASE SCOPED CREDENTIAL CredentialsNeoBank\nWITH IDENTITY = 'SHARED ACCESS SIGNATURE',\nSECRET = 'sv=2022-11-02&ss=bfqt&srt=c&sp=rwdlacupyx&se=2024-12-22T05:02:51Z&st=2024-12-20T21:02:51Z&spr=https,http&sig=pr1Ollmx3eijXC0PsUH%2BwdsKHopZu6U9%2Bh%2FMvnhGimE%3D';\nGO",
 					"metadata": {
 						"language": "sql"
 					},
@@ -126,6 +126,29 @@
 				},
 				"content": {
 					"query": "CREATE EXTERNAL DATA SOURCE DS_NEOBANK_bronze\nWITH (\n    LOCATION = 'https://saneobankpocunit.blob.core.windows.net/bronze',\n    CREDENTIAL = CredentialsNeoBank\n);\n\n-- ABFS\n/*CREATE EXTERNAL DATA SOURCE DS_NEOBANK_bronze_abfs\nWITH(\n    LOCATION = 'abfss://bronze@saneobankpocunit.dfs.core.windows.net',\n    CREDENTIAL = CredentialsNeoBank\n);*/",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "db_pssv_NeoBank",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL - ExternalNeoBankClient')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "External Table - Neobank"
+				},
+				"content": {
+					"query": "CREATE EXTERNAL TABLE extNeoBankClient(\nRowNumber INT,\nCustomerId INT,\nSurname VARCHAR(100),\nCreditScore VARCHAR(100),\nGeography VARCHAR(100),\nGender VARCHAR(100),\nAge VARCHAR(100),\nTenure VARCHAR(100),\nBalance VARCHAR(100),\nNumOfProducts VARCHAR(100),\nHasCrCard VARCHAR(100),\nIsActiveMember VARCHAR(100),\nEstimatedSalary VARCHAR(100),\nExited VARCHAR(100)\n)\nWITH(\nLOCATION = 'NeoBank_Modelling.csv',\nDATA_SOURCE = DS_NEOBANK_bronze_abfs,\nFILE_FORMAT = csv_format\n)",
 					"metadata": {
 						"language": "sql"
 					},
