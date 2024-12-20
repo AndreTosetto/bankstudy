@@ -5,7 +5,7 @@
 			"name": "External Table - Neobank"
 		},
 		"content": {
-			"query": "CREATE EXTERNAL DATA SOURCE DS_NEOBANK_bronze\nWITH (\n    LOCATION = 'https://saneobankpocunit.blob.core.windows.net/bronze',\n    CREDENTIAL = CredentialsNeoBank\n);",
+			"query": "CREATE EXTERNAL DATA SOURCE DS_NEOBANK_bronze\nWITH (\n    LOCATION = 'https://saneobankpocunit.blob.core.windows.net/bronze',\n    CREDENTIAL = CredentialsNeoBank\n);\n\n-- ABFS\n/*CREATE EXTERNAL DATA SOURCE DS_NEOBANK_bronze_abfs\nWITH(\n    LOCATION = 'abfss://bronze@saneobankpocunit.dfs.core.windows.net',\n    CREDENTIAL = CredentialsNeoBank\n);*/",
 			"metadata": {
 				"language": "sql"
 			},
