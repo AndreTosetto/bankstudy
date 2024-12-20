@@ -148,7 +148,7 @@
 					"name": "External Table - Neobank"
 				},
 				"content": {
-					"query": "CREATE EXTERNAL TABLE extNeoBankClient(\nRowNumber INT,\nCustomerId INT,\nSurname VARCHAR(100),\nCreditScore VARCHAR(100),\nGeography VARCHAR(100),\nGender VARCHAR(100),\nAge VARCHAR(100),\nTenure VARCHAR(100),\nBalance VARCHAR(100),\nNumOfProducts VARCHAR(100),\nHasCrCard VARCHAR(100),\nIsActiveMember VARCHAR(100),\nEstimatedSalary VARCHAR(100),\nExited VARCHAR(100)\n)\nWITH(\nLOCATION = 'NeoBank_Modelling.csv',\nDATA_SOURCE = DS_NEOBANK_bronze_abfs,\nFILE_FORMAT = csv_format\n)",
+					"query": "CREATE EXTERNAL TABLE extNeoBankClient(\nRowNumber INT,\nCustomerId INT,\nSurname VARCHAR(100),\nCreditScore VARCHAR(100),\nGeography VARCHAR(100),\nGender VARCHAR(100),\nAge VARCHAR(100),\nTenure VARCHAR(100),\nBalance VARCHAR(100),\nNumOfProducts VARCHAR(100),\nHasCrCard VARCHAR(100),\nIsActiveMember VARCHAR(100),\nEstimatedSalary VARCHAR(100),\nExited VARCHAR(100)\n)\nWITH(\nLOCATION = 'NeoBank_Modelling.csv',\nDATA_SOURCE = DS_NEOBANK_b,\nFILE_FORMAT = csv_format\n)",
 					"metadata": {
 						"language": "sql"
 					},
@@ -246,6 +246,29 @@
 					},
 					"currentConnection": {
 						"databaseName": "db_srvss_pool_NeoBank",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/testingDataSource')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "External Table - Neobank"
+				},
+				"content": {
+					"query": "CREATE EXTERNAL DATA SOURCE DS_NEOBANK_b WITH\n(\n\tLOCATION = 'https://saneobankpocunit.blob.core.windows.net/bronze',\n\tCREDENTIAL = CredentialsNeoBank\n)\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "db_pssv_NeoBank",
 						"poolName": "Built-in"
 					},
 					"resultLimit": 5000
