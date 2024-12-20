@@ -5,7 +5,7 @@
 			"name": "External Table - Neobank"
 		},
 		"content": {
-			"query": "CREATE EXTERNAL TABLE extNeoBankClient(\nRowNumber INT,\nCustomerId INT,\nSurname VARCHAR(100),\nCreditScore VARCHAR(100),\nGeography VARCHAR(100),\nGender VARCHAR(100),\nAge VARCHAR(100),\nTenure VARCHAR(100),\nBalance VARCHAR(100),\nNumOfProducts VARCHAR(100),\nHasCrCard VARCHAR(100),\nIsActiveMember VARCHAR(100),\nEstimatedSalary VARCHAR(100),\nExited VARCHAR(100)\n)\nWITH(\nLOCATION = 'NeoBank_Modelling.csv',\nDATA_SOURCE = DS_NEOBANK_b,\nFILE_FORMAT = csv_format\n)",
+			"query": "CREATE EXTERNAL TABLE extNeoBankClient(\nRowNumber INT,\nCustomerId INT,\nSurname VARCHAR(100),\nCreditScore VARCHAR(100),\nGeography VARCHAR(100),\nGender VARCHAR(100),\nAge VARCHAR(100),\nTenure VARCHAR(100),\nBalance VARCHAR(100),\nNumOfProducts VARCHAR(100),\nHasCrCard VARCHAR(100),\nIsActiveMember VARCHAR(100),\nEstimatedSalary VARCHAR(100),\nExited VARCHAR(100)\n)\nWITH(\nLOCATION = 'NeoBank_Modelling.csv',\nDATA_SOURCE = DS_NEOBANK_b,\nFILE_FORMAT = csv_format\n)\n\nDROP EXTERNAL TABLE extNeoBankClient;",
 			"metadata": {
 				"language": "sql"
 			},
