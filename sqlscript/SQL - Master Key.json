@@ -5,7 +5,7 @@
 			"name": "External Table - Neobank"
 		},
 		"content": {
-			"query": "CREATE MASTER KEY ENCRYPTION BY PASSWORD = '23987hxJ#Passw@rdKL95234nl0zBe';\nGO\n\nSELECT * FROM sys.symmetric_keys",
+			"query": "CREATE MASTER KEY ENCRYPTION BY PASSWORD = '23987hxJ#Passw@rdKL95234nl0zBe';\nGO",
 			"metadata": {
 				"language": "sql"
 			},
