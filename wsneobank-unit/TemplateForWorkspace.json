@@ -94,6 +94,29 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL - Credential_NeoBank')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "External Table - Neobank"
+				},
+				"content": {
+					"query": "CREATE DATABASE SCOPED CREDENTIAL CredentialsNeoBank\nWITH IDENTITY = 'SHARED ACCESS SIGNATURE',\nSECRET = 'sv=2022-11-02&ss=bfqt&srt=c&sp=rwdlacupyx&se=2024-12-31T02:22:50Z&st=2024-12-20T18:22:50Z&spr=https,http&sig=DD8nTeVvJzBXNSQMCe0Ksl3JmU5H%2BQemJQzh4ZoPgcE%3D';\nGO",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "db_pssv_NeoBank",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SQL - Master Key')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
