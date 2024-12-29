@@ -1,0 +1,17 @@
+{
+	"name": "SQL - ExternalTable - Clients",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseDelimitedTextFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat] \n\tWITH ( FORMAT_TYPE = DELIMITEDTEXT ,\n\t       FORMAT_OPTIONS (\n\t\t\t FIELD_TERMINATOR = ',',\n\t\t\t STRING_DELIMITER = '\"',\n\t\t\t FIRST_ROW = 2,\n\t\t\t USE_TYPE_DEFAULT = TRUE\n\t\t\t))\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'silver_saneobankpocunit_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [silver_saneobankpocunit_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://silver@saneobankpocunit.dfs.core.windows.net', \n\t\tTYPE = HADOOP \n\t)\nGO\n\nCREATE EXTERNAL TABLE dbo.extClientNeobank (\n\tRowNumber INT,\n    CustomerId INT,\n    Surname VARCHAR(100),\n    CreditScore VARCHAR(100),\n    Geography VARCHAR(100),\n    Gender VARCHAR(100),\n    Age VARCHAR(100),\n    Tenure VARCHAR(100),\n    Balance VARCHAR(100),\n    NumOfProducts VARCHAR(100),\n    HasCrCard VARCHAR(100),\n    IsActiveMember VARCHAR(100),\n    EstimatedSalary VARCHAR(100),\n    Exited VARCHAR(100)  \n\t)\n\tWITH (\n\tLOCATION = 'NeoBank_Modelling/neobankclients_databricks.csv',\n\tDATA_SOURCE = [silver_saneobankpocunit_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\nGO\n\n\nSELECT TOP 100 * FROM dbo.extClientNeobank\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synpdneobankn",
+				"poolName": "synpdneobankn"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
