@@ -94,6 +94,29 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL - Credential')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Dedicated SQL Pool"
+				},
+				"content": {
+					"query": "CREATE DATABASE SCOPED CREDENTIAL credencialSilverNeob\n\nWITH IDENTITY = 'SHARED ACESS SIGNATURE',\nSECRET = 'sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2024-12-29T10:37:31Z&st=2024-12-29T02:37:31Z&spr=https&sig=CniJVY5CutgzysDjYMTuFzry0LPfVSb4o2o1vsBqnJA%3D'\nGO\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "synpdneobankn",
+						"poolName": "synpdneobankn"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SQL - Credential_NeoBank')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
@@ -132,6 +155,29 @@
 					"currentConnection": {
 						"databaseName": "db_pssv_NeoBank",
 						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL - DataSource')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Dedicated SQL Pool"
+				},
+				"content": {
+					"query": "CREATE EXTERNAL DATA SOURCE ContainerSaneobankSilver\n\nWITH (\n    LOCATION = 'https://saneobankpocunit.blob.core.windows.net/silver',\n    CREDENTIAL = credencialSilverNeob\n)",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "synpdneobankn",
+						"poolName": "synpdneobankn"
 					},
 					"resultLimit": 5000
 				},
@@ -209,18 +255,44 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/SQL script 1')]",
+			"name": "[concat(parameters('workspaceName'), '/SQL -Masterkey')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
+				"folder": {
+					"name": "Dedicated SQL Pool"
+				},
 				"content": {
-					"query": "SELECT TOP (100) [RowNumber]\n,[CustomerId]\n,[Surname]\n,[CreditScore]\n,[Geography]\n,[Gender]\n,[Age]\n,[Tenure]\n,[Balance]\n,[NumOfProducts]\n,[HasCrCard]\n,[IsActiveMember]\n,[EstimatedSalary]\n,[Exited]\n FROM [dbo].[extNeoBankClient]",
+					"query": "CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'A2mxx(@23n23123nklawdawel4'",
 					"metadata": {
 						"language": "sql"
 					},
 					"currentConnection": {
-						"databaseName": "db_pssv_NeoBank",
-						"poolName": "Built-in"
+						"databaseName": "synpdneobankn",
+						"poolName": "synpdneobankn"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL- FileFormat')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Dedicated SQL Pool"
+				},
+				"content": {
+					"query": "CREATE EXTERNAL FILE FORMAT formato_scv\n\nWITH(\n    FORMAT_TYPE = DELIMITEDTEXT,\n    FORMAT_OPTIONS(\n        FIELD_TERMINATOR = ',',\n        STRING_DELIMITER = '\"',\n        FIRST_ROW = 1,\n        USE_TYPE_DEFAULT = TRUE\n    )\n)",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "synpdneobankn",
+						"poolName": "synpdneobankn"
 					},
 					"resultLimit": 5000
 				},
@@ -733,6 +805,18 @@
 				"sparkVersion": "3.4",
 				"isComputeIsolationEnabled": false,
 				"sessionLevelPackagesEnabled": true,
+				"annotations": []
+			},
+			"dependsOn": [],
+			"location": "westus2"
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synpdneobankn')]",
+			"type": "Microsoft.Synapse/workspaces/sqlPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"collation": "SQL_Latin1_General_CP1_CI_AS",
+				"maxSizeBytes": 263882790666240,
 				"annotations": []
 			},
 			"dependsOn": [],
