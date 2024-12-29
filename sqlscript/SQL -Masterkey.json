@@ -1,11 +1,11 @@
 {
-	"name": "SQL- FileFormat",
+	"name": "SQL -Masterkey",
 	"properties": {
 		"folder": {
 			"name": "Dedicated SQL Pool"
 		},
 		"content": {
-			"query": "CREATE EXTERNAL FILE FORMAT formato_scv\n\nWITH(\n    FORMAT_TYPE = DELIMITEDTEXT,\n    FORMAT_OPTIONS(\n        FIELD_TERMINATOR = ',',\n        STRING_DELIMITER = '\"',\n        FIRST_ROW = 1,\n        USE_TYPE_DEFAULT = TRUE\n    )\n)",
+			"query": "CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'A2mxx(@23n23123nklawdawel4'",
 			"metadata": {
 				"language": "sql"
 			},
