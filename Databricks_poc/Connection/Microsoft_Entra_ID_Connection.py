@@ -1,10 +1,10 @@
 # Databricks notebook source
-client_id = '5'
-tenant_id = '4'
-client_secret = '3'
+client_id = 'client_id'
+tenant_id = 'tenant_id'
+client_secret = 'client_secret'
 
-storage_account_name = '2'
-container_name  = '1'
+storage_account_name = 'storage_account_name'
+container_name  = 'container_name'
 
 
 # COMMAND ----------
