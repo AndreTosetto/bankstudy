@@ -1,0 +1,17 @@
+{
+	"name": "SQL - Copy Into",
+	"properties": {
+		"content": {
+			"query": "COPY INTO dbo.clientNeoBank\n(\n    RowNumber,\n    CustomerId ,\n    Surname,\n    CreditScore ,\n    Geography,\n    Gender,\n    Age,\n    Tenure,\n    Balance,\n    NumOfProducts,\n    HasCrCard,\n    IsActiveMember,\n    EstimatedSalary,\n    Exited \n)\n\nFROM 'https://saneobankpocunit.blob.core.windows.net/silver/NeoBank_Modelling/neobankclients_databricks.csv'\n\nWITH(\n    FILE_TYPE = 'CSV',\n    FIRSTROW = 2,\n    FIELDTERMINATOR = ','\n);\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synpdneobankn",
+				"poolName": "synpdneobankn"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "SELECT COUNT(*) FROM dbo.ClientNeobank",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synpdneobankn",
+				"poolName": "synpdneobankn"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
