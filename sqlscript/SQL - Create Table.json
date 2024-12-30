@@ -1,0 +1,17 @@
+{
+	"name": "SQL - Create Table",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE clientNeoBank\n(\n    RowNumber INT,\n    CustomerId INT,\n    Surname VARCHAR(100),\n    CreditScore VARCHAR(100),\n    Geography VARCHAR(100),\n    Gender VARCHAR(100),\n    Age VARCHAR(100),\n    Tenure VARCHAR(100),\n    Balance VARCHAR(100),\n    NumOfProducts VARCHAR(100),\n    HasCrCard VARCHAR(100),\n    IsActiveMember VARCHAR(100),\n    EstimatedSalary VARCHAR(100),\n    Exited VARCHAR(100)  \n)\nWITH\n(\n    DISTRIBUTION = HASH (CustomerId),\n    CLUSTERED COLUMNSTORE INDEX\n)\nGO\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synpdneobankn",
+				"poolName": "synpdneobankn"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
