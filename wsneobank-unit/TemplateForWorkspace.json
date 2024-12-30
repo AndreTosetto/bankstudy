@@ -94,6 +94,26 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL - Copy Into')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "COPY INTO dbo.clientNeoBank\n(\n    RowNumber,\n    CustomerId ,\n    Surname,\n    CreditScore ,\n    Geography,\n    Gender,\n    Age,\n    Tenure,\n    Balance,\n    NumOfProducts,\n    HasCrCard,\n    IsActiveMember,\n    EstimatedSalary,\n    Exited \n)\n\nFROM 'https://saneobankpocunit.blob.core.windows.net/silver/NeoBank_Modelling/neobankclients_databricks.csv'\n\nWITH(\n    FILE_TYPE = 'CSV',\n    FIRSTROW = 2,\n    FIELDTERMINATOR = ','\n);\n\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "synpdneobankn",
+						"poolName": "synpdneobankn"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SQL - Create Table')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
@@ -304,6 +324,26 @@
 				},
 				"content": {
 					"query": "CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'A2mxx(@23n23123nklawdawel4'",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "synpdneobankn",
+						"poolName": "synpdneobankn"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "SELECT COUNT(*) FROM dbo.ClientNeobank",
 					"metadata": {
 						"language": "sql"
 					},
@@ -826,18 +866,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/synpdneobankn')]",
-			"type": "Microsoft.Synapse/workspaces/sqlPools",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"collation": "SQL_Latin1_General_CP1_CI_AS",
-				"maxSizeBytes": 263882790666240,
-				"annotations": []
-			},
-			"dependsOn": [],
-			"location": "westus2"
-		},
-		{
 			"name": "[concat(parameters('workspaceName'), '/synspneobankest')]",
 			"type": "Microsoft.Synapse/workspaces/bigDataPools",
 			"apiVersion": "2019-06-01-preview",
@@ -857,6 +885,18 @@
 				"sparkVersion": "3.4",
 				"isComputeIsolationEnabled": false,
 				"sessionLevelPackagesEnabled": true,
+				"annotations": []
+			},
+			"dependsOn": [],
+			"location": "westus2"
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/synpdneobankn')]",
+			"type": "Microsoft.Synapse/workspaces/sqlPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"collation": "SQL_Latin1_General_CP1_CI_AS",
+				"maxSizeBytes": 263882790666240,
 				"annotations": []
 			},
 			"dependsOn": [],
